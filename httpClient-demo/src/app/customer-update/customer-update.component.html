@@ -1,3 +1,47 @@
-<p>
-  customer-update works!
-</p>
+<div class="justify-content-center align-items-center py-5">
+  <h2 class="border-bottom">Update Customer Form</h2>
+  <form [formGroup]="updateCustomerForm" (ngSubmit)="updateCustomer()">
+    <div class="form-group">
+      <label>Name:</label>
+      <input class="form-control" name="name" type="text" formControlName="name" value='{{customer.name}}'>
+    </div>
+    <br />
+
+    <div class="form-group">
+      <label>Email:</label>
+      <input class="form-control" name="email" type="email" formControlName="email" value='{{customer.email}}' required>
+    </div>
+    <div *ngIf="updateCustomerForm.controls.email.invalid && updateCustomerForm.controls.email.dirty" class="alert alert-danger">
+      <div *ngIf="updateCustomerForm.controls.email.errors.email">
+        Email required.
+      </div>
+    </div>
+    <br />
+    <div class="form-group">
+      <label>Phone number:</label>
+      <input class="form-control" name="phone" type="tel" formControlName="phone" value='{{customer.phone}}' required>
+    </div>
+    <div *ngIf="updateCustomerForm.controls.phone.invalid && updateCustomerForm.controls.phone.dirty" class="alert alert-danger">
+      <div *ngIf="updateCustomerForm.controls.phone.errors.phone">
+        Phone number required.
+      </div>
+    </div>
+    <br />
+    <div class="form-group">
+      <label>City:</label>
+      <input class="form-control" name="city" type="text" formControlName="city" value='{{customer.city}}'>
+    </div>
+    <br />
+    <div class="form-group">
+      <label>Country:</label>
+      <input class="form-control" name="country" type="text" formControlName="country" value='{{customer.country}}'>
+    </div>
+    <br />
+    <div class="form-group">
+      <label>Title:</label>
+      <input class="form-control" name="title" type="text" formControlName="title" value='{{customer.title}}'>
+    </div>
+    <br />
+    <input class="btn btn-primary" type="submit" value="Update Customer">
+  </form>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {CustomerService} from '../customer.service';
 import {Customer} from '../customer';
 import {ActivatedRoute} from '@angular/router';
@@ -9,8 +9,9 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./customer-details.component.css']
 })
 export class CustomerDetailsComponent implements OnInit {
+  
   id: number;
-  customer: Customer;
+  customer: Customer = new Customer;
   constructor(private route: ActivatedRoute, private customerService: CustomerService) { }
 
   ngOnInit() {
@@ -21,6 +22,6 @@ export class CustomerDetailsComponent implements OnInit {
     this.route.params.subscribe(data => this.id = +(data.id));
 
     // FIXME - this needs to be invoked differently once the service returns an Observable as expected.
-    this.customer = this.customerService.getCustomer(this.id);
+    this.customerService.getCustomer(this.id).subscribe(customer => this.customer = customer);
   }
 }
